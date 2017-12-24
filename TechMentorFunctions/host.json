@@ -1,10 +1,10 @@
 {
   "IsEncrypted": false,
   "Values": {
-    "AzureWebJobsStorage": "#{JOBS_STORAGEACCOUNT}",
-    "AzureWebJobsDashboard": "#{JOBS_STORAGEACCOUNT}",
-    "QueueConnectionString": "#{JOBS_STORAGEACCOUNT}",
-    "WebsiteUri": "#{WEBSITE_URI}",
-    "MailGunApiKey": "#{MAILGUN_APIKEY}"
+    "AzureWebJobsStorage": "",
+    "AzureWebJobsDashboard": "",
+    "QueueConnectionString": "",
+    "WebsiteUri": "",
+    "MailGunApiKey": ""
   }
 }
