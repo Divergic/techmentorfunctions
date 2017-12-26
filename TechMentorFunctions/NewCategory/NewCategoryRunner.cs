@@ -39,7 +39,7 @@ namespace TechMentorFunctions.NewCategory
                 {"from", "Tech Mentors <noreply@mail.techmentors.info>"},
                 {"to", "admin@watchium.com"},
                 {"subject", "New Tech Mentors Category"},
-                {"html", $"<html><body><p>A new category has been added to Tech Mentors.</p><p><a href=\"{websiteUri}categories/approve?group={data.Group}&name={encodedName}\">Approve {data.Group} {data.Name}</a></p></body></html>"}
+                {"html", $"<html><body><p>A new category has been added to Tech Mentors ({websiteUri}).</p><p><a href=\"{websiteUri}categories/approve?group={data.Group}&name={encodedName}\">Approve {data.Group} {data.Name}</a></p></body></html>"}
             };
 
             var content = new FormUrlEncodedContent(fields);
