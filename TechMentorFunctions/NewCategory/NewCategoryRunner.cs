@@ -36,10 +36,10 @@ namespace TechMentorFunctions.NewCategory
             var client = new HttpClient(handler);
             var fields = new Dictionary<string, string>
             {
-                {"from", "Tech Mentors <noreply@techmentors.info>"},
+                {"from", "Tech Mentors <noreply@mail.techmentors.info>"},
                 {"to", "admin@watchium.com"},
                 {"subject", "New Tech Mentors Category"},
-                {"html", $"<html><body><p>A new category has been added to Tech Mentors.</p><p><a href=\"{websiteUri}categories/approve?group={data.Group}&name={encodedName}\">Approve {data.Group} {data.Name}</a></p></body></html>"}
+                {"html", $"<html><body><p>A new category has been added to <a href=\"{websiteUri}\">Tech Mentors ({websiteUri})</a>.</p><p><a href=\"{websiteUri}categories/approve?group={data.Group}&name={encodedName}\">Approve {data.Group} {data.Name}</a></p></body></html>"}
             };
 
             var content = new FormUrlEncodedContent(fields);
