@@ -57,7 +57,7 @@ namespace TechMentorFunctions.UpdatedProfile
 
             if (profile.PhotoId.HasValue)
             {
-                builder.AppendLine($"<p><img src\"{apiUri}profiles/{profile.Id}/photos/{profile.PhotoId}?hash={profile.PhotoHash}\" /></p>");
+                builder.AppendLine($"<p><img src=\"{apiUri}profiles/{profile.Id}/photos/{profile.PhotoId}?hash={profile.PhotoHash}\" /></p>");
             }
 
             if (string.IsNullOrWhiteSpace(profile.About) == false)

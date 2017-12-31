@@ -456,7 +456,7 @@
             _output.WriteLine(actual);
 
             actual.Should().Contain(
-                "<img src\"" + ApiUri + "profiles/" + expected.Id + "/photos/" + expected.PhotoId + "?hash=" +
+                "<img src=\"" + ApiUri + "profiles/" + expected.Id + "/photos/" + expected.PhotoId + "?hash=" +
                 expected.PhotoHash + "\" />");
         }
     }
