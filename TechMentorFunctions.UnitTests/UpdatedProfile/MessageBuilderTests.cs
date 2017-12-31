@@ -335,6 +335,26 @@
         }
 
         [Fact]
+        public void BuildReturnsMessageWithLinkToEmailTest()
+        {
+            var expected = new Profile
+            {
+                Id = Guid.NewGuid(),
+                Status = ProfileStatus.Available,
+                Email = Guid.NewGuid().ToString()
+            };
+
+            var sut = new MessageBuilder();
+
+            var actual = sut.Build(expected, WebsiteUri, ApiUri);
+
+            _output.WriteLine(actual);
+
+            actual.Should().Contain(expected.Status.ToString());
+            actual.Should().Contain($"<a href=\"mailto:{expected.Email}\">{expected.Email}</a>");
+        }
+
+        [Fact]
         public void BuildReturnsMessageWithSkillsTest()
         {
             var expected = new Profile

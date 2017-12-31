@@ -22,7 +22,7 @@ namespace TechMentorFunctions.UpdatedProfile
                 $"<p>A profile has been updated in <a href=\"{websiteUri}profiles/{profile.Id}\">Tech Mentors ({websiteUri})</a>.</p>");
             builder.AppendLine("<h3>Profile</h3>");
             builder.AppendLine($"<p>Status: {profile.Status}</p>");
-            builder.AppendLine($"<p>Email: {profile.Email}</p>");
+            builder.AppendLine($"<p>Email: <a href=\"mailto:{profile.Email}\">{profile.Email}</a></p>");
 
             if (profile.BannedAt.HasValue)
             {
