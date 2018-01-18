@@ -4,6 +4,8 @@ using HeyRed.MarkdownSharp;
 
 namespace TechMentorFunctions.UpdatedProfile
 {
+    using System.Diagnostics;
+
     public interface IMessageBuilder
     {
         string Build(Profile profile, string websiteUri, string apiUri);
@@ -20,7 +22,14 @@ namespace TechMentorFunctions.UpdatedProfile
                 $"<p>A profile has been updated in <a href=\"{websiteUri}profiles/{profile.Id}\">Tech Mentors ({websiteUri})</a>.</p>");
             builder.AppendLine("<h3>Profile</h3>");
             builder.AppendLine($"<p>Status: {profile.Status}</p>");
-            builder.AppendLine($"<p>Email: {profile.Email}</p>");
+            builder.AppendLine($"<p>Email: <a href=\"mailto:{profile.Email}\">{profile.Email}</a></p>");
+
+            if (profile.BannedAt.HasValue)
+            {
+                builder.AppendLine(
+                    $"<p style=\"color: red;\"><strong>This profile was banned at {profile.BannedAt.Value:D}</strong></p>");
+            }
+
             builder.AppendLine("<h3>Personal</h3>");
             builder.AppendLine($"<p>Name: {profile.FirstName} {profile.LastName}</p>");
 
@@ -48,7 +57,7 @@ namespace TechMentorFunctions.UpdatedProfile
 
             if (profile.PhotoId.HasValue)
             {
-                builder.AppendLine($"<p><img src\"{apiUri}profiles/{profile.Id}/photos/{profile.PhotoId}\" /></p>");
+                builder.AppendLine($"<p><img src=\"{apiUri}profiles/{profile.Id}/photos/{profile.PhotoId}?hash={profile.PhotoHash}\" /></p>");
             }
 
             if (string.IsNullOrWhiteSpace(profile.About) == false)
@@ -95,9 +104,9 @@ namespace TechMentorFunctions.UpdatedProfile
 
                     var yearRange = DisplayYearRange(skill);
 
-                    if (string.IsNullOrWhiteSpace(yearRange))
+                    if (string.IsNullOrWhiteSpace(yearRange) == false)
                     {
-                        builder.Append($", {yearRange}");
+                        builder.Append($" {yearRange}");
                     }
 
                     builder.AppendLine("</p>");
@@ -113,12 +122,9 @@ namespace TechMentorFunctions.UpdatedProfile
 
         private static string DisplayYearRange(Skill skill)
         {
-            if (skill == null)
-            {
-                return "";
-            }
+            Debug.Assert(skill != null, "No skill provided");
 
-            if (!skill.YearStarted.HasValue)
+            if (skill.YearStarted.HasValue == false)
             {
                 if (skill.YearLastUsed.HasValue)
                 {

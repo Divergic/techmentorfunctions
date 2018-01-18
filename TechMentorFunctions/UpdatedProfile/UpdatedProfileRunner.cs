@@ -11,7 +11,7 @@ namespace TechMentorFunctions.UpdatedProfile
     public class UpdatedProfileRunner
     {
         [FunctionName("UpdatedProfile")]
-        public static async Task Run([QueueTrigger("updatedprofile", Connection = "QueueConnectionString")]
+        public static async Task Run([QueueTrigger("updatedprofiles", Connection = "QueueConnectionString")]
             Profile profile, TraceWriter log)
         {
             if (profile == null)
